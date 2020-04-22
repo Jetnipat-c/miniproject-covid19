@@ -84,30 +84,7 @@ function LoginPage () {
           </div>
         </div>
       </div>
-      {/* <div className='Login-header'>
-        <div>
-          <input
-            type='text'
-            name='email'
-            onChange={e => setEmail(e.target.value)}
-          ></input>
-        </div>
-        <div>
-          <input
-            type='password'
-            name='password'
-            onChange={e => setPassword(e.target.value)}
-          ></input>
-        </div>
-        <div>
-          <button type='submit' onClick={signin}>
-            SingIn
-          </button>
-          <button type='submit' onClick={signup}>
-            Signup
-          </button>
-        </div>
-      </div> */}
+      {/* https://bootsnipp.com/snippets/7nk08 */}
     </div>
   )
 }
