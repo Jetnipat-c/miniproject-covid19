@@ -1,23 +1,40 @@
 import React, { useState } from 'react'
+import firebase from 'firebase/app';
+import fire from '../config/fire'
 function LoginPage () {
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  console.log(username)
-  console.log(password)
+  const signin = (e) =>{
+    e.preventDefault();
+    fire.auth().signInWithEmailAndPassword(email, password).then((u) => {
+        console.log('usingin',u)
+    }).catch((err) => {
+        console.log(err)
+    })
+  }
+  const signup = e => {
+
+    e.preventDefault()
+    fire.auth().createUserWithEmailAndPassword(email, password).then((u) => {
+        console.log('usingup',u)
+    }).catch((err) => {
+        console.log(err)
+    })
+}
+
   return (
     <div>
       LoginPage
       <div>
-        <input type='text' onChange={e => setUsername(e.target.value)}></input>
+        <input type="text" name="email" onChange={e => setEmail(e.target.value)}></input>
       </div>
       <div>
-        <input
-          type='password'
-          onChange={e => setPassword(e.target.value)}
+        <input type="password" name="password" onChange={e => setPassword(e.target.value)}
         ></input>
       </div>
       <div>
-        <button type='submit'>SingIn</button>
+        <button type='submit' onClick={signin}>SingIn</button>
+        <button type='submit' onClick={signup}>Signup</button>
       </div>
     </div>
   )
