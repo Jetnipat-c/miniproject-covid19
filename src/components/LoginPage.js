@@ -34,15 +34,6 @@ function LoginPage () {
 
   return (
     <div>
-      <Navbar>
-        <Navbar.Brand href='/'>Navbar with text</Navbar.Brand>
-        <Navbar.Toggle />
-        <Navbar.Collapse className='justify-content-end'>
-          <Navbar.Text>
-            Signed in as: <a href='#login'>Mark Otto</a>
-          </Navbar.Text>
-        </Navbar.Collapse>
-      </Navbar>
       <div className='sidenav'>
         <div className='login-main-text'>
           <h2>Application</h2>
