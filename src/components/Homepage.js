@@ -10,6 +10,7 @@ import DataTable from 'react-data-table-component'
 import colums from '../components/Datatablecolums'
 import DataChart from '../components/DataChart'
 import TimeSeriesChart from '../components/TimeseriesChart'
+import Loading from '../components/Loading'
 const apiUrl = 'https://api.covid19api.com/summary'
 const timeseriesChart = 'https://pomber.github.io/covid19/timeseries.json'
 const fetcher = url => fetch(url).then(r => r.json());
@@ -24,7 +25,7 @@ const HomePage = () => {
 
 
   if (!data) {
-    return <p>not found</p>
+    return <Loading/>
   } else
     return (
       <div>
@@ -45,13 +46,13 @@ const HomePage = () => {
         <style jsx>
           {`
             .container{
+              @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@500&display=swap');
+              font-family: 'Baloo Bhaina 2', cursive;
               width: 820px;
               margin: 0 auto;
-            }
           `}
         </style>
         <div>
-
 
         <DataTable
         title="COVID19 Summary"
