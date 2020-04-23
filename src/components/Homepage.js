@@ -6,17 +6,19 @@ import { Nav, Navbar, Button, Form } from 'react-bootstrap'
 import axios from 'axios'
 import fetch from 'unfetch'
 import useSWR from 'swr'
+import DataTable from 'react-data-table-component'
+import colums from '../components/Datatablecolums'
+const apiUrl = 'https://api.covid19api.com/summary'
 
-const apiUrl = 'https://api.covid19api.com/summary';
-// const fetcher = url => fetch(url).then(r => r.json());
-const fetcher = url => axios.get(url)
+const fetcher = url => fetch(url).then(r => r.json());
+
 const HomePage = () => {
-
   const logout = () => {
     fire.auth().signOut()
   }
+ 
+  const { data, error } = useSWR(apiUrl, fetcher)
 
-  const { data, error } = useSWR(apiUrl, fetcher);
 
   if (!data) {
     return <p>not found</p>
@@ -36,7 +38,16 @@ const HomePage = () => {
             </Button>
           </Form>
         </Navbar>
-        <p>{JSON.stringify(data)}</p>
+
+        <DataTable
+        title="COVID19 Summary"
+        columns={colums}
+        data={data.Countries}
+        pagination={true}
+      />
+        
+
+        {/* <p>{JSON.stringify(data)}</p> */}
       </div>
     )
 }
