@@ -5,11 +5,12 @@ import './homePage.css'
 import { Nav, Navbar, Button, Form } from 'react-bootstrap'
 import axios from 'axios'
 import fetch from 'unfetch'
+import useSWR from 'swr'
 const apiUrl = 'https://api.covid19api.com/summary';
 function HomePage () {
 
   const fetcher = url => axios.get(url).then(r=>r.json());
-
+  const { data , error} = useSWR
   const logout = () => {
     fire.auth().signOut()
   }
