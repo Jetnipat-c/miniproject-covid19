@@ -9,9 +9,11 @@ import {
     ResponsiveContainer
   } from 'recharts';
   
-  export default ({ data }) => {
+  export default ({ data,title }) => {
     return (
-      <ResponsiveContainer width="100%" height={500}>
+        <div>
+            <h2>{title}</h2>
+            <ResponsiveContainer width="100%" height={500}>
         <LineChart width={800} height={500} data={data}>
           <XAxis dataKey="date" />
           <YAxis />
@@ -22,5 +24,7 @@ import {
           <Tooltip />
         </LineChart>
       </ResponsiveContainer>
+        </div>
+      
     );
   };

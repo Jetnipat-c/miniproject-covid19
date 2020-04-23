@@ -41,6 +41,17 @@ const HomePage = () => {
             </Button>
           </Form>
         </Navbar>
+        <div className="container">
+        <style jsx>
+          {`
+            .container{
+              width: 820px;
+              margin: 0 auto;
+            }
+          `}
+        </style>
+        <div>
+
 
         <DataTable
         title="COVID19 Summary"
@@ -49,10 +60,14 @@ const HomePage = () => {
         pagination={true}
       />
         
-        <DataChart data={data.Countries}/>
-        <TimeSeriesChart data={timeseries.Thailand}/>
+        <DataChart data={data.Countries} title="Surmmary"/>
+        <TimeSeriesChart data={timeseries.Thailand} title="Summary Thailand"/>
         {/* <p>{JSON.stringify(data)}</p> */}
       </div>
+      </div>
+      </div>
+      
+      
     )
 }
 export default HomePage
