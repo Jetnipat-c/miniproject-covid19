@@ -8,6 +8,7 @@ import fetch from 'unfetch'
 import useSWR from 'swr'
 import DataTable from 'react-data-table-component'
 import colums from '../components/Datatablecolums'
+import DataChart from '../components/DataChart'
 const apiUrl = 'https://api.covid19api.com/summary'
 
 const fetcher = url => fetch(url).then(r => r.json());
@@ -46,6 +47,7 @@ const HomePage = () => {
         pagination={true}
       />
         
+        <DataChart data={data.Countries}/>
 
         {/* <p>{JSON.stringify(data)}</p> */}
       </div>
