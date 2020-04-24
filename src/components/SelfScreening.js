@@ -2,7 +2,12 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Nav, Navbar, Button, Form } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
+import firebase from 'firebase/app'
 import fire from '../config/fire'
+import 'firebase/firestore'
+if ( firebase.apps.length === 0)
+    firebase.initializeApp(fire)
+export const firestore = firebase.firestore()
 const SelfScreening = () => {
     const [user, setUser] = useState('')
 
@@ -19,10 +24,43 @@ const SelfScreening = () => {
   useEffect(() => {
     authListener()
   }, [])
-
+  
   const logout = () => {
     fire.auth().signOut()
   }
+
+  const [tasks, setTasks] = useState([])
+   const [name, setName] = useState('')
+ 
+   const retriveData = () => {
+       firestore.collection("tasks").orderBy('id', 'asc').onSnapshot(snapshot => {
+           let myTask = snapshot.docs.map(d => {
+               const { id, name } = d.data()
+               return {id,name }
+           })
+           setTasks(myTask)
+       })
+   }
+ 
+   useEffect(() => {
+       retriveData()
+   }, [])
+ 
+   const renderTask = () => {
+       if (tasks && tasks.length) {
+           return tasks.map((task, index) => (
+               <li key={index}>{task.id}:{task.name} </li>
+           ))
+       }
+       else {
+           return <div>No Task</div>
+       }
+   }
+   const addTask = () => {
+    let id = ( tasks.length ===0)?1:tasks[tasks.length-1].id+1
+    firestore.collection("tasks").doc(id+'').set({id,name})
+  }
+
   return (
       <div>
           <Navbar bg='dark' variant='dark'>
@@ -40,6 +78,10 @@ const SelfScreening = () => {
             </Button>
           </Form>
         </Navbar>
+        <h1>Todo</h1>
+        <input type="text" name="name" onChange={ (e)=> setName(e.target.value)}></input>
+        <button onClick={addTask}>Submit</button>
+        <ul > {renderTask()}</ul>
           <div className='container'>
       <style jsx>
         {`
