@@ -3,7 +3,6 @@ import fire from '../config/fire'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './homePage.css'
 import { Nav, Navbar, Button, Form } from 'react-bootstrap'
-import axios from 'axios'
 import fetch from 'unfetch'
 import useSWR from 'swr'
 import DataTable from 'react-data-table-component'
@@ -12,7 +11,6 @@ import DataChart from '../components/DataChart'
 import TimeSeriesChart from '../components/TimeseriesChart'
 import Loading from '../components/Loading'
 import { useState, useEffect } from 'react'
-import SelfScreening from './SelfScreening'
 const apiUrl = 'https://api.covid19api.com/summary'
 const timeseriesChart = 'https://pomber.github.io/covid19/timeseries.json'
 const fetcher = url => fetch(url).then(r => r.json())
@@ -38,7 +36,7 @@ const HomePage = () => {
     fire.auth().signOut()
   }
  
-  const { data, error } = useSWR(apiUrl, fetcher)
+  const { data } = useSWR(apiUrl, fetcher)
   const { data: timeseries } = useSWR(timeseriesChart, fetcher)
 
   if (!data) {
