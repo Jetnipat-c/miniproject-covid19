@@ -3,7 +3,7 @@ import './App.css';
 import LoginPage from './components/LoginPage'
 import { Route } from 'react-router-dom';
 import HomePage from './components/Homepage'
-import SelfScreening from './components/SelfScreening'
+import TestSelfScreening from './components/TestSelfScreening'
 import fire from './config/fire'
 class App extends Component {
 
@@ -46,7 +46,7 @@ class App extends Component {
         <div>
           <Route exact path="/" component={HomePage} />
           <Route path="/login" component={LoginPage} />
-          <Route path="/selfScreening" component={SelfScreening} />
+          <Route path="/testSelfScreening" component={TestSelfScreening} />
         </div>
       </div>
     )

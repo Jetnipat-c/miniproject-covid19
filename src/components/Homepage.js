@@ -48,7 +48,7 @@ const HomePage = () => {
           <Navbar.Brand>MiniProjet covid19</Navbar.Brand>
           <Nav className='mr-auto'>
             <Nav.Link href='/' >Summary</Nav.Link>
-            <Nav.Link href='/selfScreening'>Self-Screening</Nav.Link>
+            <Nav.Link href='/testSelfScreening'>Self-Screening</Nav.Link>
           </Nav>
           <Form inline>
           <Nav className='mr-auto'>
@@ -60,15 +60,6 @@ const HomePage = () => {
           </Form>
         </Navbar>
         <div className='container'>
-          <style jsx>
-            {`
-            .container{
-              @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@500&display=swap');
-              font-family: 'Baloo Bhaina 2', cursive;
-              width: 820px;
-              margin: 0 auto;
-          `}
-          </style>
           <div>
             <DataTable
               title='COVID19 Summary'
