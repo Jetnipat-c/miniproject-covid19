@@ -1,5 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { Nav, Navbar, Button, Form } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 import fire from '../config/fire'
 const SelfScreening = () => {
@@ -18,8 +19,28 @@ const SelfScreening = () => {
   useEffect(() => {
     authListener()
   }, [])
+
+  const logout = () => {
+    fire.auth().signOut()
+  }
   return (
-    <div className='container'>
+      <div>
+          <Navbar bg='dark' variant='dark'>
+          <Navbar.Brand>MiniProjet covid19</Navbar.Brand>
+          <Nav className='mr-auto'>
+            <Nav.Link href='/' >Summary</Nav.Link>
+            <Nav.Link href='/selfScreening'>Self-Screening</Nav.Link>
+          </Nav>
+          <Form inline>
+          <Nav className='mr-auto'>
+            <Nav.Link >{user}</Nav.Link>
+          </Nav>
+            <Button onClick={logout} variant='outline-info'>
+              Logout
+            </Button>
+          </Form>
+        </Navbar>
+          <div className='container'>
       <style jsx>
         {`
           .container {
@@ -27,11 +48,15 @@ const SelfScreening = () => {
             font-family: 'Baloo Bhaina 2', cursive;
             width: 820px;
             margin: 0 auto;
+            padding-top: 15px;
           }
           input {
             -webkit-box-shadow: 0 5px 6px -8px black;
             -moz-box-shadow: 0 5px 6px -8px black;
             box-shadow: 0 5px 6px -8px black;
+          }
+          button{
+              margin: 15px;
           }
         `}
       </style>
@@ -119,10 +144,13 @@ const SelfScreening = () => {
             </select>
           </div>
         </div>
-
+        <button type="button" class="btn btn-success">Success</button>
+        <button type="button" class="btn btn-danger">Danger</button>
         
       </from>
     </div>
+      </div>
+    
   )
 }
 
