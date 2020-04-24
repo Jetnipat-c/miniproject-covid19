@@ -12,6 +12,7 @@ import DataChart from '../components/DataChart'
 import TimeSeriesChart from '../components/TimeseriesChart'
 import Loading from '../components/Loading'
 import { useState, useEffect } from 'react'
+import SelfScreening from './SelfScreening'
 const apiUrl = 'https://api.covid19api.com/summary'
 const timeseriesChart = 'https://pomber.github.io/covid19/timeseries.json'
 const fetcher = url => fetch(url).then(r => r.json())
