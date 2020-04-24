@@ -5,7 +5,6 @@ import './homePage.css'
 import { Nav, Navbar, Button, Form } from 'react-bootstrap'
 import axios from 'axios'
 import fetch from 'unfetch'
-
 import useSWR from 'swr'
 import DataTable from 'react-data-table-component'
 import colums from '../components/Datatablecolums'
