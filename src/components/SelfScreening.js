@@ -83,10 +83,9 @@ const SelfScreening = () => {
           </label>
           <div class='col-sm-10'>
             <select class='custom-select'>
-              <option selected>Open this select menu</option>
-              <option value='1'>One</option>
-              <option value='2'>Two</option>
-              <option value='3'>Three</option>
+            <option selected>Open this select menu</option>
+              <option value='1'>ชาย (Male)</option>
+              <option value='2'>หญิง (Female)</option>
             </select>
           </div>
         </div>
@@ -98,10 +97,9 @@ const SelfScreening = () => {
           </label>
           <div class='col-sm-10'>
             <select class='custom-select'>
-              <option selected>Open this select menu</option>
-              <option value='1'>One</option>
-              <option value='2'>Two</option>
-              <option value='3'>Three</option>
+            <option selected>Open this select menu</option>
+              <option value='1'>ไม่มี NO</option>
+              <option value='2'>มี YES</option>
             </select>
           </div>
         </div>
@@ -111,10 +109,13 @@ const SelfScreening = () => {
           </label>
           <div class='col-sm-10'>
             <select class='custom-select'>
-              <option selected>Open this select menu</option>
-              <option value='1'>One</option>
-              <option value='2'>Two</option>
-              <option value='3'>Three</option>
+            <option selected>Open this select menu</option>
+              <option value='1'>ไอ Cough</option>
+              <option value='2'>เจ็บคอ Sore throats</option>
+              <option value='3'>น้ํามูกไหล Runny nose</option>
+              <option value='4'>เหนื่อยหอบ Shortness of breath</option>
+              <option value='5'>ไม่มีอาการเหล่านี้ None of these symtoms</option>
+            
             </select>
           </div>
         </div>
@@ -127,8 +128,16 @@ const SelfScreening = () => {
               <option selected>Open this select menu</option>
               <option value='1'>One</option>
               <option value='2'>Two</option>
-              <option value='3'>Three</option>
             </select>
+          </div>
+          <div class='col-sm-10'>
+            <input
+              type='text'
+              readonly
+              class='form-control-plaintext'
+              id='staticEmail'
+              placeholder='จากประเทศ (From)'
+            ></input>
           </div>
         </div>
         <div class='form-group row'>
@@ -138,14 +147,19 @@ const SelfScreening = () => {
           <div class='col-sm-10'>
             <select class='custom-select'>
               <option selected>Open this select menu</option>
-              <option value='1'>One</option>
-              <option value='2'>Two</option>
-              <option value='3'>Three</option>
+              <option value='1'> ใช่ Yes ( สัมผัสผู้ป่วย (contacted with suspected) )</option>
+              <option value='2'> ใช่ Yes ( ประกอบอาชีพ (career opportunities with foreign tourists) )</option>
+              <option value='3'>ไม่ No</option>
             </select>
           </div>
         </div>
-        <button type="button" class="btn btn-success">Success</button>
-        <button type="button" class="btn btn-danger">Danger</button>
+        <button type="button" class="btn btn-success">
+        <div>บันทึกและประเมินผลการเรียนของท่าน  </div>
+        Save and self screening result </button>
+        <button type="button" class="btn btn-danger">
+            <div>ยกเลิก</div>
+            cancel
+        </button>
         
       </from>
     </div>
