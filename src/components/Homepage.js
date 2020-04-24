@@ -5,6 +5,7 @@ import './homePage.css'
 import { Nav, Navbar, Button, Form } from 'react-bootstrap'
 import axios from 'axios'
 import fetch from 'unfetch'
+
 import useSWR from 'swr'
 import DataTable from 'react-data-table-component'
 import colums from '../components/Datatablecolums'
@@ -36,7 +37,7 @@ const HomePage = () => {
   const logout = () => {
     fire.auth().signOut()
   }
-
+ 
   const { data, error } = useSWR(apiUrl, fetcher)
   const { data: timeseries } = useSWR(timeseriesChart, fetcher)
 
@@ -46,10 +47,10 @@ const HomePage = () => {
     return (
       <div>
         <Navbar bg='dark' variant='dark'>
-          <Navbar.Brand href='#home'>MiniProjet covid19</Navbar.Brand>
+          <Navbar.Brand>MiniProjet covid19</Navbar.Brand>
           <Nav className='mr-auto'>
-            <Nav.Link href='#home'>Home</Nav.Link>
-            <Nav.Link href='#features'>Features</Nav.Link>
+            <Nav.Link href='/' >Summary</Nav.Link>
+            <Nav.Link href='/selfScreening'>Self-Screening</Nav.Link>
           </Nav>
           <Form inline>
           <Nav className='mr-auto'>
