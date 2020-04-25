@@ -31,7 +31,6 @@ const SelfScreening = () => {
   }
 
   const [tasks, setTasks] = useState([])
-  const [name, setName] = useState('')
 
   const retriveData = () => {
     firestore
@@ -62,8 +61,12 @@ const SelfScreening = () => {
   const onSubmit = register => {
     console.log('register data : ', register)
     addTask(register)
-    if (register.sick === '2' && register.symptom === '')
-      return console.log('sex choice = 1')
+    if (register.sick === '1' && register.symptomCough === '1' && register.symptomRunnynose === '1'
+    && register.symptomShortnessofbreath === '1' && register.symptomSorethroats === '1'
+    && register.nhistory === '1' && register.thistory === '1' )
+      return console.log('ผลการตรวจสอบ = มีความเสี่ยง')
+    else 
+    return console.log('ผลการตรวจสอบ = ไม่มีความเสี่ยง')
   }
 
   return (
@@ -121,8 +124,8 @@ const SelfScreening = () => {
             </label>
             <div className='col-sm-10'>
               <select name='sick' ref={register} className='custom-select'>
-                <option value='1'>ไม่มี NO</option>
-                <option value='2'>มี YES</option>
+                <option value='1'>มี YES</option>
+                <option value='2'>ไม่มี NO </option>
               </select>
             </div>
           </div>
