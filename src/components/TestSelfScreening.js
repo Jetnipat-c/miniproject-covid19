@@ -72,6 +72,8 @@ const SelfScreening = () => {
   const onSubmit = register => {
     console.log('register data : ', register)
     addTask(register)
+    if (register.sick ==='2' && register.symptom ==='')
+    return console.log('sex choice = 1')
   }
 
   return (
@@ -158,6 +160,14 @@ const SelfScreening = () => {
                   ไม่มีอาการเหล่านี้ None of these symtoms
                 </option>
               </select>
+              <div className="input-group mb-3">
+              <div className="input-group-prepend">
+              <div className="input-group-text">
+              <input type="checkbox" aria-label="Checkbox for following text input" placeholder='ddd' ></input>
+              </div>
+              </div>
+              <input type="text" className="form-control" aria-label="Text input with checkbox"></input>
+              </div>
             </div>
           </div>
           {/* ############################   Thistory  ####################################### */}
@@ -173,8 +183,8 @@ const SelfScreening = () => {
             </label>
             <div className='col-sm-10'>
               <select name='thistory' ref={register} className='custom-select'>
-                <option value='1'>One</option>
-                <option value='2'>Two</option>
+                <option value='1'>ใช่ ( Yes )</option>
+                <option value='2'>ไม่ใช่ ( No )</option>
               </select>
             </div>
             <div className='col-sm-10'>
