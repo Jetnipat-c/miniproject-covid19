@@ -209,7 +209,7 @@ const SelfScreening = () => {
           </div>         
 {/* ############################################################################### */}          
           <div>
-            <button  onClick={onSubmit} type='submit' className='btn btn-success'>
+            <button type='submit' className='btn btn-success'>
             <div>บันทึกและประเมินผลการเรียนของท่าน </div>
             Save and self screening result
             </button>
