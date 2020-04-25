@@ -1,12 +1,11 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Nav, Navbar, Button, Form } from 'react-bootstrap'
+import { Nav, Navbar, Button, Form, Modal } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 import firebase from 'firebase/app'
 import fire from '../config/fire'
 import 'firebase/firestore'
 import { useForm } from 'react-hook-form'
-import '../components/selfScreening.css'
 if (firebase.apps.length === 0) firebase.initializeApp(fire)
 export const firestore = firebase.firestore()
 const SelfScreening = () => {
@@ -49,24 +48,54 @@ const SelfScreening = () => {
     retriveData()
   }, [])
 
-
   const addTask = register => {
     let id = tasks.length === 0 ? 1 : tasks[tasks.length - 1].id + 1
     firestore
       .collection('tasks')
       .doc(id + '')
-      .set({ id , register })
+      .set({ id, register })
   }
+  const [ status,setStatus ] = useState('')
   const { register, handleSubmit } = useForm() // initialise the hook
   const onSubmit = register => {
     console.log('register data : ', register)
     addTask(register)
-    if (register.sick === '1' && register.symptomCough === '1' && register.symptomRunnynose === '1'
-    && register.symptomShortnessofbreath === '1' && register.symptomSorethroats === '1'
-    && register.nhistory === '1' && register.thistory === '1' )
-      return console.log('ผลการตรวจสอบ = มีความเสี่ยง')
-    else 
-    return console.log('ผลการตรวจสอบ = ไม่มีความเสี่ยง')
+    if (
+      register.sick === '1' &&
+      register.symptomCough === '1' &&
+      register.symptomRunnynose === '1' &&
+      register.symptomShortnessofbreath === '1' &&
+      register.symptomSorethroats === '1' &&
+      register.nhistory === '1' &&
+      register.thistory === '1'
+    )
+      return setStatus('มีควางเสี่ยง ไม่ต้องกักตัว') && console.log('ผลการตรวจสอบ = มีความเสี่ยง')
+    else return setStatus('ไม่มีความเสี่ยง จำเป็นต้องกักตัว 14 วัน') && console.log('ผลการตรวจสอบ = ไม่มีความเสี่ยง')
+  }
+  const [modalShow, setModalShow] = React.useState(false)
+  const MyVerticallyCenteredModal = props => {
+    return (
+      <Modal
+        {...props}
+        size='lg'
+        aria-labelledby='contained-modal-title-vcenter'
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id='contained-modal-title-vcenter'>
+          ผลประเมินความเสี่ยง
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>
+            {status}
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    )
   }
 
   return (
@@ -140,20 +169,18 @@ const SelfScreening = () => {
                 <div className='input-group-prepend'>
                   <div className='input-group-text'>
                     <input
-                    name='symptomCough'
-                    ref={register}
-                    value='1'
+                      name='symptomCough'
+                      ref={register}
+                      value='1'
                       type='checkbox'
                       aria-label='Checkbox for following text input'
                     ></input>
                   </div>
                 </div>
                 <label
-                  
                   type='text'
                   className='form-control'
                   aria-label='Text input with checkbox'
-                  
                 >
                   ไอ Cough
                 </label>
@@ -163,20 +190,18 @@ const SelfScreening = () => {
                 <div className='input-group-prepend'>
                   <div className='input-group-text'>
                     <input
-                     name='symptomSorethroats'
-                     ref={register}
-                     value='1'
+                      name='symptomSorethroats'
+                      ref={register}
+                      value='1'
                       type='checkbox'
                       aria-label='Checkbox for following text input'
                     ></input>
                   </div>
                 </div>
                 <label
-                 
                   type='text'
                   className='form-control'
                   aria-label='Text input with checkbox'
-                 
                 >
                   เจ็บคอ Sore throats
                 </label>
@@ -186,20 +211,18 @@ const SelfScreening = () => {
                 <div className='input-group-prepend'>
                   <div className='input-group-text'>
                     <input
-                    name='symptomRunnynose'
-                    ref={register}
-                    value='1'
+                      name='symptomRunnynose'
+                      ref={register}
+                      value='1'
                       type='checkbox'
                       aria-label='Checkbox for following text input'
                     ></input>
                   </div>
                 </div>
                 <label
-                  
                   type='text'
                   className='form-control'
                   aria-label='Text input with checkbox'
-                  
                 >
                   น้ํามูกไหล Runny nose
                 </label>
@@ -209,20 +232,18 @@ const SelfScreening = () => {
                 <div className='input-group-prepend'>
                   <div className='input-group-text'>
                     <input
-                    name='symptomShortnessofbreath'
-                    ref={register}
-                    value='1'
+                      name='symptomShortnessofbreath'
+                      ref={register}
+                      value='1'
                       type='checkbox'
                       aria-label='Checkbox for following text input'
                     ></input>
                   </div>
                 </div>
                 <label
-              
                   type='text'
                   className='form-control'
                   aria-label='Text input with checkbox'
-                  
                 >
                   เหนื่อยหอบ Shortness of breath
                 </label>
@@ -232,8 +253,8 @@ const SelfScreening = () => {
                 <div className='input-group-prepend'>
                   <div className='input-group-text'>
                     <input
-                    name='symptomNoneofthesesymtoms'
-                    ref={register}
+                      name='symptomNoneofthesesymtoms'
+                      ref={register}
                       type='checkbox'
                       value='0'
                       aria-label='Checkbox for following text input'
@@ -301,11 +322,18 @@ const SelfScreening = () => {
           </div>
           {/* ############################   Button  ####################################### */}
           <div>
-            <button type='submit' className='btn btn-success'>
+            <Button
+              type='submit'
+              variant='primary'
+              onClick={() => setModalShow(true)}
+            >
               <div>บันทึกและประเมินผลการเรียนของท่าน </div>
               Save and self screening result
-            </button>
-
+            </Button>
+            <MyVerticallyCenteredModal
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+            />
             <button type='button' className='btn btn-danger'>
               <div>ยกเลิก</div>
               cancel

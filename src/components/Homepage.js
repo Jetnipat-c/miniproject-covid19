@@ -35,7 +35,7 @@ const HomePage = () => {
   const logout = () => {
     fire.auth().signOut()
   }
- 
+
   const { data } = useSWR(apiUrl, fetcher)
   const { data: timeseries } = useSWR(timeseriesChart, fetcher)
 
@@ -43,22 +43,23 @@ const HomePage = () => {
     return <Loading />
   } else
     return (
-      <div>
+      <div className="font">
         <Navbar bg='dark' variant='dark'>
           <Navbar.Brand>MiniProjet covid19</Navbar.Brand>
           <Nav className='mr-auto'>
-            <Nav.Link href='/' >Summary</Nav.Link>
-            <Nav.Link href='/testSelfScreening'>Self-Screening</Nav.Link>
+            <Nav.Link href='/'>Summary</Nav.Link>
+            <Nav.Link href='/SelfScreening'>Self-Screening</Nav.Link>
           </Nav>
           <Form inline>
-          <Nav className='mr-auto'>
-            <Nav.Link >{user}</Nav.Link>
-          </Nav>
+            <Nav className='mr-auto'>
+              <Nav.Link>{user}</Nav.Link>
+            </Nav>
             <Button onClick={logout} variant='outline-info'>
               Logout
             </Button>
           </Form>
         </Navbar>
+
         <div className='container'>
           <div>
             <DataTable
