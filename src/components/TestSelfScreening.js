@@ -50,17 +50,7 @@ const SelfScreening = () => {
     retriveData()
   }, [])
 
-  const renderTask = () => {
-    if (tasks && tasks.length) {
-      return tasks.map((task, index) => (
-        <li key={index}>
-          {task.id}:{task.name}{' '}
-        </li>
-      ))
-    } else {
-      return <div>No Task</div>
-    }
-  }
+
   const addTask = register => {
     let id = tasks.length === 0 ? 1 : tasks[tasks.length - 1].id + 1
     firestore
@@ -95,14 +85,6 @@ const SelfScreening = () => {
       </Navbar>
 
       {/* ###########################   Firebase  ############################### */}
-      <h1>Todo</h1>
-      <input
-        type='text'
-        name='name'
-        onChange={e => setName(e.target.value)}
-      ></input>
-      <button onClick={addTask}>Submit</button>
-      <ul> {renderTask()}</ul>
       {/* ##########################   Topic  ###################################### */}
       <div className='container'>
         <h1>SelfScreening</h1>

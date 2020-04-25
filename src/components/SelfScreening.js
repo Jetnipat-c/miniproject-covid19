@@ -61,17 +61,19 @@ const SelfScreening = () => {
       return <div>No Task</div>
     }
   }
-  const addTask = (register) => {
+  const addTask = register => {
     let id = tasks.length === 0 ? 1 : tasks[tasks.length - 1].id + 1
     firestore
       .collection('tasks')
       .doc(id + '')
-      .set({ register })
+      .set({ id , register })
   }
   const { register, handleSubmit } = useForm() // initialise the hook
   const onSubmit = register => {
     console.log('register data : ', register)
     addTask(register)
+    if (register.sick === '2' && register.symptom === '')
+      return console.log('sex choice = 1')
   }
 
   return (
@@ -149,15 +151,118 @@ const SelfScreening = () => {
               Symptoms?
             </label>
             <div className='col-sm-10'>
-              <select name='symptom' ref={register} className='custom-select'>
-                <option value='1'>ไอ Cough</option>
-                <option value='2'>เจ็บคอ Sore throats</option>
-                <option value='3'>น้ํามูกไหล Runny nose</option>
-                <option value='4'>เหนื่อยหอบ Shortness of breath</option>
-                <option value='5'>
+              <div className='input-group mb-3'>
+                <div className='input-group-prepend'>
+                  <div className='input-group-text'>
+                    <input
+                    name='symptomCough'
+                    ref={register}
+                    value='1'
+                      type='checkbox'
+                      aria-label='Checkbox for following text input'
+                    ></input>
+                  </div>
+                </div>
+                <label
+                  
+                  type='text'
+                  className='form-control'
+                  aria-label='Text input with checkbox'
+                  
+                >
+                  ไอ Cough
+                </label>
+              </div>
+
+              <div className='input-group mb-3'>
+                <div className='input-group-prepend'>
+                  <div className='input-group-text'>
+                    <input
+                     name='symptomSorethroats'
+                     ref={register}
+                     value='1'
+                      type='checkbox'
+                      aria-label='Checkbox for following text input'
+                    ></input>
+                  </div>
+                </div>
+                <label
+                 
+                  type='text'
+                  className='form-control'
+                  aria-label='Text input with checkbox'
+                 
+                >
+                  เจ็บคอ Sore throats
+                </label>
+              </div>
+
+              <div className='input-group mb-3'>
+                <div className='input-group-prepend'>
+                  <div className='input-group-text'>
+                    <input
+                    name='symptomRunnynose'
+                    ref={register}
+                    value='1'
+                      type='checkbox'
+                      aria-label='Checkbox for following text input'
+                    ></input>
+                  </div>
+                </div>
+                <label
+                  
+                  type='text'
+                  className='form-control'
+                  aria-label='Text input with checkbox'
+                  
+                >
+                  น้ํามูกไหล Runny nose
+                </label>
+              </div>
+
+              <div className='input-group mb-3'>
+                <div className='input-group-prepend'>
+                  <div className='input-group-text'>
+                    <input
+                    name='symptomShortnessofbreath'
+                    ref={register}
+                    value='1'
+                      type='checkbox'
+                      aria-label='Checkbox for following text input'
+                    ></input>
+                  </div>
+                </div>
+                <label
+              
+                  type='text'
+                  className='form-control'
+                  aria-label='Text input with checkbox'
+                  
+                >
+                  เหนื่อยหอบ Shortness of breath
+                </label>
+              </div>
+
+              <div className='input-group mb-3'>
+                <div className='input-group-prepend'>
+                  <div className='input-group-text'>
+                    <input
+                    name='symptomNoneofthesesymtoms'
+                    ref={register}
+                      type='checkbox'
+                      value='0'
+                      aria-label='Checkbox for following text input'
+                    ></input>
+                  </div>
+                </div>
+                <label
+                  type='text'
+                  className='form-control'
+                  aria-label='Text input with checkbox'
+                >
                   ไม่มีอาการเหล่านี้ None of these symtoms
-                </option>
-              </select>
+                </label>
+              </div>
             </div>
           </div>
           {/* ############################   Thistory  ####################################### */}
@@ -173,8 +278,8 @@ const SelfScreening = () => {
             </label>
             <div className='col-sm-10'>
               <select name='thistory' ref={register} className='custom-select'>
-                <option value='1'>One</option>
-                <option value='2'>Two</option>
+                <option value='1'>ใช่ ( Yes )</option>
+                <option value='2'>ไม่ใช่ ( No )</option>
               </select>
             </div>
             <div className='col-sm-10'>
@@ -222,7 +327,6 @@ const SelfScreening = () => {
             </button>
           </div>
         </form>
-        
       </div>
     </div>
   )
