@@ -6,6 +6,7 @@ import firebase from 'firebase/app'
 import fire from '../config/fire'
 import 'firebase/firestore'
 import { useForm } from 'react-hook-form'
+import './selfScreening.css';
 if (firebase.apps.length === 0) firebase.initializeApp(fire)
 export const firestore = firebase.firestore()
 const SelfScreening = () => {
