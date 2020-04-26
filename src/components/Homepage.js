@@ -38,7 +38,6 @@ const HomePage = () => {
 
   const { data } = useSWR(apiUrl, fetcher)
   const { data: timeseries } = useSWR(timeseriesChart, fetcher)
-
   if (!data) {
     return <Loading />
   } else
@@ -49,6 +48,7 @@ const HomePage = () => {
           <Nav className='mr-auto'>
             <Nav.Link href='/'>Summary</Nav.Link>
             <Nav.Link href='/SelfScreening'>Self-Screening</Nav.Link>
+            
           </Nav>
           <Form inline>
             <Nav className='mr-auto'>
@@ -68,12 +68,13 @@ const HomePage = () => {
               data={data.Countries}
               pagination={true}
             />
-
             <DataChart data={data.Countries} title='Surmmary' />
             <TimeSeriesChart
               data={timeseries.Thailand}
               title='Summary Thailand'
             />
+
+            
             {/* <p>{JSON.stringify(data)}</p> */}
           </div>
         </div>

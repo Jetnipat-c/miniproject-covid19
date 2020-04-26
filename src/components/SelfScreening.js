@@ -70,8 +70,8 @@ const SelfScreening = () => {
       register.nhistory === '1' &&
       register.thistory === '1'
     )
-      return setStatus('มีควางเสี่ยง ไม่ต้องกักตัว') && console.log('ผลการตรวจสอบ = มีความเสี่ยง')
-    else return setStatus('ไม่มีความเสี่ยง จำเป็นต้องกักตัว 14 วัน') && console.log('ผลการตรวจสอบ = ไม่มีความเสี่ยง')
+      return setStatus('มีควางเสี่ยง จำเป็นต้องกักตัว 14 วัน') && console.log('ผลการตรวจสอบ = มีความเสี่ยง')
+    else return setStatus('ไม่มีความเสี่ยง ไม่ต้องกักตัว') && console.log('ผลการตรวจสอบ = ไม่มีความเสี่ยง')
   }
   const [modalShow, setModalShow] = React.useState(false)
   const MyVerticallyCenteredModal = props => {
